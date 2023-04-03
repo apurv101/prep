@@ -84,7 +84,6 @@ def authenticate_login():
     return jsonify({'access_token':access_token}),200
 
     
-
 def generate_prompt():
     start_sequence = "\nAI:"
     restart_sequence = "\nHuman: "
