@@ -51,21 +51,37 @@ def index():
     return render_template("index.html", result=result)
 
 
-# @app.route('/auth', methods=['POST'])
-# def authenticate():
-#     username = request.json.get('username')
-#     password = request.json.get('password')
+#@app.route('/auth', methods=['POST'])
+#def authenticate():
+     #username = request.json.get('username')
+     #password = request.json.get('password')
 
-#     # Validate the user credentials
-#     if username != 'valid_username' or password != 'valid_password':
-#         return jsonify({'message': 'Invalid credentials'}), 401
+     # Validate the user credentials
+     #if username != 'valid_username' or password != 'valid_password':
+         #return jsonify({'message': 'Invalid credentials'}), 404
 
-#     # Generate a JWT access token
-#     access_token = create_access_token(identity=username)
+    # Generate a JWT access token
+     #access_token = create_access_token(identity=username)
 
-#     # Return the access token as a JSON response
-#     return jsonify({'access_token': access_token}), 200
+     # Return the access token as a JSON response
+     #return jsonify({'access_token': access_token}), 200
+# log in 
+@app.route('/authlogin', methods=['POST'])
+def authenticate_login():
+    Email=request.json.get('Email')
+    Password=request.json.get('password')
+     
 
+    #validate the user credentials
+    if Email !='valid_Email' or Password !='valid_password':
+        return jsonify({'message':'Invalid credentials'}),404
+
+     #generate a jwt access token
+    access_token=create_access_token(identity=Email)
+
+    #rreturn the access token as a json response
+    return jsonify({'access_token':access_token}),200
+    
 
 def generate_prompt():
     start_sequence = "\nAI:"
