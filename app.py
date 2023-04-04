@@ -148,6 +148,55 @@ def create_question_what_could_be_meaning(word):
     prompt = f"give four options 'A', 'B', 'C', 'D'. that could be meaning of word '{word}'. Give output in below format given as example, and tell which one is correct out of four."
     return get_openai_response(prompt)
 
+def insert_words_from_csv(file_path):
+    # Open the CSV file
+    with open(file_path, 'r') as csv_file:
+        # Use the csv library to read the contents of the file
+        csv_reader = csv.reader(csv_file)
+
+        # Skip the first row (header)
+        next(csv_reader)
+
+        # Iterate over each row in the CSV file
+        for row in csv_reader:
+            # Get the word name from the current row
+            word = row[0]
+            defination = row[1]
+            frequency = row[2]
+
+            # Create a new Word object with the name from the CSV file
+            word = Word(word=word,defination=defination,
+                        frequency=frequency)
+
+            # Add the Word object to the database session
+            db.session.add(word)
+
+         # open with csv file
+        #with open(file_path,"r+")as csvfile:
+             # use csv library to read the file
+            #csv_reader = csv.reader(csv_file)
+
+              #csv file header names
+            #filename=['name','meaning','frequency']
+               # write new header names
+             #writer=csv.DictWriter(fieldnames=word)
+             #writer.writeheader()
+
+
+           # Iterate over each row in the CSV file
+        #for row in csv_reader:
+        
+             #Getthe new header names in row
+           # writer.writerow({
+               # "word":row["name"],
+                #"defination":row["meaning"],
+                #"frequency":row["frequency"],
+           # }
+
+    # Commit the changes to the database
+    db.session.commit()
+
+
 
 def insert_words_from_csv(file_path):
     # Open the CSV file
