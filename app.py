@@ -165,8 +165,8 @@ def insert_words_from_csv(file_path):
             frequency = row[2]
 
             # Create a new Word object with the name from the CSV file
-            word = Word(word=word,defination=defination,
-                        frequency=frequency)
+            word = Word(word=row['name'],defination=row['meaning'],
+                        frequency=row['frequency'])
 
             # Add the Word object to the database session
             db.session.add(word)
