@@ -185,13 +185,15 @@ def insert_words_from_csv(file_path):
 
            # Iterate over each row in the CSV file
         #for row in csv_reader:
-        
+
              #Getthe new header names in row
            # writer.writerow({
                # "word":row["name"],
                 #"defination":row["meaning"],
                 #"frequency":row["frequency"],
            # }
+           #Add the filename object to the database session
+          # db.session.add(filename)
 
     # Commit the changes to the database
     db.session.commit()
